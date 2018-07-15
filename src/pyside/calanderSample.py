@@ -1,33 +1,35 @@
 import sys
-from pyside import QtCore, QtGui
+from PySide2 import QtCore, QtGui, QtWidgets
 
-class calander_widget(QtGui.QWidget):
+
+class CalenderWidget(QtWidgets.QWidget):
     def __init__(self):
-        super(calander_widget, self).__init__()
+        super(CalenderWidget, self).__init__()
         self.init()
 
     def init(self):
-        c = QtGui.QCalanderWidget(self)
+        c = QtWidgets.QCalendarWidget(self)
         c.setGridVisible(True)
-        c.move(20,20)
-        l = QtGui.QLabel(self)
-        l.move(200, 50)
-        self.setGeomentry(100,100,500,500)
-        self.setWindowTitle("Select Date Calander")
-        
-        def showdata(self, date):
+        c.move(20, 20)
+        l = QtWidgets.QLabel(self)
+        l.move(20, 250)
+        self.setGeometry(100, 100, 500, 500)
+        self.setWindowTitle("Select Date Calender")
+
+        def show_data(date):
             l.setText(date.toString())
-             
-        c.clicked[QtCore.QDate].connect(showdata)
-        showdata(self, c.selectedDate())
+
+        c.clicked[QtCore.QDate].connect(show_data)
+        show_data(c.selectedDate())
         self.show()
 
+
 def main():
-    app = QtGui.QtApplication(sys.argv)
-    ex = calander_widget()
+    app = QtWidgets.QApplication(sys.argv)
+    ex = CalenderWidget()
+    ex.show()
     sys.exit(app.exec_())
- 
+
+
 if __name__ == '__main__':
     main()
-
-    
